@@ -31,9 +31,9 @@ class Bot_V2
 
         # Подключение к бд
         $mysql_ip = "localhost";
-        $mysql_dbname = "satory";
-        $mysql_dbuser = "root";
-        $mysql_password = "";
+        $mysql_dbname = "aktiviev_katyasa";
+        $mysql_dbuser = "aktiviev_katyasa";
+        $mysql_password = "qWbniV&4";
 
         date_default_timezone_set($configs['system']['timezone']);
 
