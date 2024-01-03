@@ -1,0 +1,10 @@
+Экстаз Афродиты<:n>
+Пользователь <b>:user_id</b> <b>@:username</b> отправил чек.<:n><:n>
+На сумму <b>1491</b><:n><:n>
+Номер заказа <b>:orderId</b><:n><:n>
+
+
+Подтвердить оплату?
+
+<:buttons>Подтвердить оплату;button;/process_purchase_success :orderId :username</:buttons>
+<:buttons>Отменить оплату;button;/process_purchase_deny :orderId :username</:buttons>

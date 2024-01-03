@@ -1,0 +1,2 @@
+Заказ <b>#:aphroditeMorningId</b> оплата отменена<:n><:n>
+Пользователем <b>:user_id</b> <b>@:username</b><:n><:n>

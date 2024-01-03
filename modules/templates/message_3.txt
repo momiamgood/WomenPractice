@@ -1,0 +1,6 @@
+Тебе понравилась практика, моя милая? <:n>
+
+
+<:buttons>Да, я иду дальше;button;/message_3 1</:buttons>
+<:buttons>Нет, ничего не поняла;button;/message_3 2</:buttons>
+<:buttons>Не успела;button;/message_3 3 :command</:buttons>

@@ -1,0 +1,5 @@
+/vendor
+/storage/admin/newsletter/
+log.txt
+php_errors.log
+.idea

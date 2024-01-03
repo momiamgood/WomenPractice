@@ -1,0 +1,6 @@
+Статус марафона <b>#:status</b><:n><:n>
+Текст задачи: <:n><:n>
+:task<:n><:n>
+Текст от пользователя <b>:user_id</b> <b>@:username</b>:<:n><:n>
+:userText
+<:buttons>Ответить;button;/reply :userChatId</:buttons>

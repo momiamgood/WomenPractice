@@ -1,0 +1,6 @@
+Привет!
+<:n><:n>
+Чтобы получить бонус, подпишись на <a href="https://t.me/satorischoolchannel">КАНАЛ</a>
+<:n><:n>
+<b>Если ты подписан</b> на канал, жми кнопку ниже <i><b>"Получить бонус"</b></i>
+<:buttons>Получить бонус;button;/subscribe_check</:buttons>

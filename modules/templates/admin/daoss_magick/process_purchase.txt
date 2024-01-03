@@ -1,0 +1,7 @@
+Даосская магия<:n>
+Пользователь <b>:user_id</b> <b>@:username</b> отправил чек.<:n><:n>
+
+Подтвердить оплату?
+
+<:buttons>Подтвердить оплату;button;/daoss_magick_process_purchase_success :daossMagickId :userMessageId</:buttons>
+<:buttons>Отменить оплату;button;/daoss_magick_process_purchase_deny :daossMagickId :userMessageId</:buttons>

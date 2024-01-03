@@ -1,0 +1,1 @@
+{"id":"1","base_precent":"7","buffer":614}{"id":"2","base_precent":"3","buffer":"1058"}{"id":"3","base_precent":"2","buffer":"711"}{"id":"4","base_precent":"1","buffer":"363"}{"id":"5","base_precent":"1","buffer":"364"}{"id":"6","base_precent":"0.5","buffer":"187"}{"id":"7","base_precent":"0.5","buffer":"188"}

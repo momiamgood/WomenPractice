@@ -1,0 +1,7 @@
+Утро Афродиты<:n>
+Пользователь <b>:user_id</b> <b>@:username</b> отправил чек.<:n><:n>
+
+Подтвердить оплату?
+
+<:buttons>Подтвердить оплату;button;/aphrodite_morning_process_purchase_success :aphroditeMorningId :userMessageId</:buttons>
+<:buttons>Отменить оплату;button;/aphrodite_morning_process_purchase_deny :aphroditeMorningId :userMessageId</:buttons>
