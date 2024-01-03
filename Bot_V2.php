@@ -27,7 +27,7 @@ class Bot_V2
 
         // токен телеграм бота
         define('TELEGRAM_TOKEN', $configs['system']['telegram_token']);
-        define("ADMIN_CHAT_ID", -1002120324080);
+        define("ADMIN_CHAT_ID", -1001706592010);
 
         # Подключение к бд
         $mysql_ip = "localhost";
