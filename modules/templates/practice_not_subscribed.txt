@@ -1,1 +1,2 @@
 Для получения бонуса необходимо подписаться на <a href="https://t.me/satorischoolchannel">КАНАЛ</a>
+<:buttons>Подписалась;button;/subscribe_check</:buttons>

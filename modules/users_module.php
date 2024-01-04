@@ -830,7 +830,7 @@ if ($chat_id != ADMIN_CHAT_ID) {
                 $result = $this->getChatMember($chat_id, $user['chat_id']);
 
                 $this->DelMessageText($user["chat_id"], $message_id);
-                if ($result['ok']) {
+                if (!in_array($result['result']['status'], ['kicked', 'left'])) {
                     $template = new Template("present_2");
                 } else {
                     $template = new Template("practice_not_subscribed");
