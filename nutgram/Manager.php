@@ -57,7 +57,6 @@ class Manager
 
     public function end() {
         $this->bot->run();
-        die();
     }
 
     private function saveMedia(int|string $fileId, string $storageDirPath)

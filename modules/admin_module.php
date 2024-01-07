@@ -2,9 +2,6 @@
 use Nutgram\Manager;
 
 if ($chat_id == ADMIN_CHAT_ID) {
-    $manager = new Manager();
-    $manager->start();
-    $manager->end();
 
     if ($this->data['message']['voice']){
         $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
@@ -23,50 +20,49 @@ if ($chat_id == ADMIN_CHAT_ID) {
         $this->sendVoice(ADMIN_CHAT_ID, $file_id, $buttons);
         return;
     }
-//    //получить сенд файл
-//    $send_content = file_get_contents("modules/templates/admin/sendMsg.txt");
-//    if (strlen($send_content) > 0){
-//        $send_action = explode(" ",$send_content);
-//        if (isset($send_action[1])) {
-//            file_put_contents("modules/templates/admin/sendMsg.txt", "");
-//            if($send_action[0] == "send_one"){
-//                $this->DelMessageText(ADMIN_CHAT_ID, $send_action[2]);
-//                $user = R::findOne("users", "id = '{$send_action[1]}'");
-//                file_put_contents("modules/templates/admin/sendMsgTempl.txt",$text);
-//                $template = new Template("admin/sendMsgTempl");
-//                $template = $template->Load();
-//                $template->LoadButtons();
-//                $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
-//                $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
-//                $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено");
-//                return;
-//            } elseif ($send_action[0] == "send_all"){
-//                $this->DelMessageText(ADMIN_CHAT_ID, $send_action[1]);
-//                $users = R::findAll("users");
-//                $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
-//                file_put_contents("modules/templates/admin/sendMsgTemplAll.txt",$text);
-//                $template = new Template("admin/sendMsgTemplAll");
-//                $template = $template->Load();
-//                $template->LoadButtons();
-//                foreach ($users as $user) {
-//                    $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
-//                }
-//                $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено всем пользоваетлям");
-//                return;
-//          } elseif ($send_action[0] == "send_all_photo"){
-//                $this->DelMessageText(ADMIN_CHAT_ID, $send_action[1]);
-//                $users = R::findAll("users");
-//                $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
-//                file_put_contents("modules/templates/admin/all_file_id.txt",$photo_file_id);
-//                foreach ($users as $user) {
-//                    $this->sendPhotoAdmin($user["chat_id"], $photo_file_id);
-//                }
-//                $this->sendMessage(ADMIN_CHAT_ID, "Сообщение с фотографией отправлено всем пользователям");
-//                return;
-//                }//так же рассылка видео, документов, аудио, голосовых сообщений и видеосообщений
-//
-//        }
-//    }
+    //получить сенд файл
+    $send_content = file_get_contents("modules/templates/admin/sendMsg.txt");
+    if (strlen($send_content) > 0) {
+        $send_action = explode(" ",$send_content);
+        if (isset($send_action[1])) {
+            if($send_action[0] == "send_one"){
+                $this->DelMessageText(ADMIN_CHAT_ID, $send_action[2]);
+                $user = R::findOne("users", "id = '{$send_action[1]}'");
+                file_put_contents("modules/templates/admin/sendMsgTempl.txt",$text);
+                $template = new Template("admin/sendMsgTempl");
+                $template = $template->Load();
+                $template->LoadButtons();
+                $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
+                $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
+                $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено");
+                file_put_contents("modules/templates/admin/sendMsg.txt", "");
+                return;
+            } elseif ($send_action[0] == "send_all"){
+                $this->DelMessageText(ADMIN_CHAT_ID, $send_action[1]);
+                $users = R::findAll("users");
+                $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
+                file_put_contents("modules/templates/admin/sendMsgTemplAll.txt",$text);
+                $template = new Template("admin/sendMsgTemplAll");
+                $template = $template->Load();
+                $template->LoadButtons();
+                foreach ($users as $user) {
+                    $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
+                }
+                $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено всем пользоваетлям");
+                file_put_contents("modules/templates/admin/sendMsg.txt", "");
+                return;
+          } elseif ($send_action[0] == "other") {
+                #nutgram
+                if(!$command[0]) {
+                    $manager = new Manager();
+                    $manager->start();
+                    $manager->end();
+                    return;
+                }
+            }
+        }
+    }
+
     switch ($command[0]) {
         case "/reply":
             file_put_contents("modules/templates/admin/user_reply.txt", "$command[1] $message_id");
@@ -483,6 +479,13 @@ if ($chat_id == ADMIN_CHAT_ID) {
             }
 
 
+            return;
+        default:
+            // #nutgram
+            $manager = new Manager();
+            $manager->start();
+            $manager->end();
+            file_put_contents("modules/templates/admin/sendMsg.txt", 'other 123');
             return;
     }
 }

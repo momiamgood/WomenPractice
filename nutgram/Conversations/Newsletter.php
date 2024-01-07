@@ -27,6 +27,7 @@ class Newsletter extends Conversation
                 ->addRow(InlineKeyboardButton::make('Фотография', callback_data: 'notification:1'))
                 ->addRow(InlineKeyboardButton::make('Кружок', callback_data: 'notification:2'))
                 ->addRow(InlineKeyboardButton::make('Видео', callback_data: 'notification:3'))
+                ->addRow(InlineKeyboardButton::make('Отмена', callback_data: 'notification:4'))
         );
         $bot->setGlobalData('notification', ['delete_message_id' => $sentMessage->message_id]);
         $this->next('requestMedia');
@@ -51,6 +52,9 @@ class Newsletter extends Conversation
                     case 'notification:3':
                         $text = 'Отправьте в чат видео для рассылки:';
                         $this->file_type = 'video';
+                        break;
+                    case 'notification:4':
+                        $bot->deleteMessage(chat_id: $bot->chatId(), message_id: $bot->messageId());
                         break;
                 }
                 $sentMessage = $bot->sendMessage(text: $text, chat_id: $bot->chatId());
@@ -176,6 +180,7 @@ class Newsletter extends Conversation
                             break;
                     }
                 }
+                file_put_contents(__DIR__."/../../modules/templates/admin/sendMsg.txt", "");
                 $this->end();
             } else $this->end();
         }
