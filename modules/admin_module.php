@@ -21,7 +21,7 @@ if ($chat_id == ADMIN_CHAT_ID) {
         return;
     }
     //получить сенд файл
-    $send_content = file_get_contents("modules/templates/admin/sendMsg.txt");
+    $send_content = file_get_contents(__DIR__."/templates/admin/sendMsg.txt");
     if (strlen($send_content) > 0) {
         $send_action = explode(" ",$send_content);
         if (isset($send_action[1])) {
@@ -35,7 +35,7 @@ if ($chat_id == ADMIN_CHAT_ID) {
                 $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
                 $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
                 $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено");
-                file_put_contents("modules/templates/admin/sendMsg.txt", "");
+                file_put_contents(__DIR__."/templates/admin/sendMsg.txt", "");
                 return;
             } elseif ($send_action[0] == "send_all"){
                 $this->DelMessageText(ADMIN_CHAT_ID, $send_action[1]);
@@ -49,7 +49,7 @@ if ($chat_id == ADMIN_CHAT_ID) {
                     $this->sendMessage($user["chat_id"], $template->text, $template->buttons);
                 }
                 $this->sendMessage(ADMIN_CHAT_ID, "Сообщение отправлено всем пользоваетлям");
-                file_put_contents("modules/templates/admin/sendMsg.txt", "");
+                file_put_contents(__DIR__."/templates/admin/sendMsg.txt", "");
                 return;
           } elseif ($send_action[0] == "other") {
                 #nutgram
@@ -341,19 +341,19 @@ if ($chat_id == ADMIN_CHAT_ID) {
             $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
             $response = $this->sendMessage(ADMIN_CHAT_ID, "Введите текст для отправки пользователю");
             $send_id = $command[1];
-            file_put_contents("modules/templates/admin/sendMsg.txt", "send_one {$send_id} {$response["result"]["message_id"]}");
+            file_put_contents(__DIR__."/templates/admin/sendMsg.txt", "send_one {$send_id} {$response["result"]["message_id"]}");
             return;
 
         case "/send_all":
             $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
             $response = $this->sendMessage(ADMIN_CHAT_ID, "Введите текст для рассылки всем пользователям");
-            file_put_contents("modules/templates/admin/sendMsg.txt", "send_all {$response["result"]["message_id"]}");
+            file_put_contents(__DIR__."/templates/admin/sendMsg.txt", "send_all {$response["result"]["message_id"]}");
             return;
 
         case "/send_all_photo":
             $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
             $response = $this->sendPhotoAdmin(ADMIN_CHAT_ID, $photo_file_id);
-            file_put_contents("modules/templates/admin/all_file_id", "send_all_photo {$response["result"]["message_id"]}");
+            file_put_contents(__DIR__."modules/templates/admin/all_file_id", "send_all_photo {$response["result"]["message_id"]}");
             return;
 
         case ((bool)preg_match("~^[0-9]+$~", $command[0])):
@@ -485,7 +485,7 @@ if ($chat_id == ADMIN_CHAT_ID) {
             $manager = new Manager();
             $manager->start();
             $manager->end();
-            file_put_contents("modules/templates/admin/sendMsg.txt", 'other 123');
+            file_put_contents(__DIR__."/templates/admin/sendMsg.txt", 'other 123');
             return;
     }
 }
