@@ -3,23 +3,26 @@ use Nutgram\Manager;
 
 if ($chat_id == ADMIN_CHAT_ID) {
 
-    if ($this->data['message']['voice']){
-        $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
+    if($this->data['message']) {
+        if ($this->data['message']['voice']){
+            $this->DelMessageText(ADMIN_CHAT_ID, $message_id);
 
 
-        $voice = $this->data['message']['voice'];
-        $file_id = $voice['file_id'];
-        file_put_contents("modules/templates/admin/file_id.txt", $file_id);
+            $voice = $this->data['message']['voice'];
+            $file_id = $voice['file_id'];
+            file_put_contents("modules/templates/admin/file_id.txt", $file_id);
 
-        $buttons = [
-            [
-                $this->buildInlineKeyBoardButton("Отправить", "/send_voice"),
-            ],
-        ];
+            $buttons = [
+                [
+                    $this->buildInlineKeyBoardButton("Отправить", "/send_voice"),
+                ],
+            ];
 
-        $this->sendVoice(ADMIN_CHAT_ID, $file_id, $buttons);
-        return;
+            $this->sendVoice(ADMIN_CHAT_ID, $file_id, $buttons);
+            return;
+        }
     }
+
     //получить сенд файл
     $send_content = file_get_contents(__DIR__."/templates/admin/sendMsg.txt");
     if (strlen($send_content) > 0) {
